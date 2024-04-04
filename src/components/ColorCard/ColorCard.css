@@ -1,0 +1,81 @@
+.color_card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 1rem;
+  width: 95%;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding: 1.5rem;
+  box-shadow: 2px -2px 15px #bababab8;
+  border-radius: 12px;
+  border: 0 solid;
+}
+.color_card h2 {
+  margin-bottom: 10px;
+  margin-left: 0.75rem;
+  font-family: system-ui;
+}
+.card_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+  border-radius: 24px;
+  overflow: hidden;
+  line-height: 0.4rem;
+}
+
+.card_info_desc {
+  background-color: rgb(230, 229, 229);
+  width: 40%;
+  height: 100%;
+  padding: 0.75rem;
+}
+
+.card_info_desc p {
+  color: grey;
+}
+
+.card_color_sample {
+  background-color: rgb(47, 91, 187);
+  width: 60%;
+  height: 100%;
+}
+
+.card_box_accordion {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-radius: 12px;
+  overflow: hidden;
+  
+}
+
+.preview_color_box {
+  height: 75px;
+  width: 25%;
+  
+}
+
+.button_Accordion {
+  appearance: none;
+  background: none;
+  border: none;
+  background-color: transparent;
+    
+}
+
+.button_Accordion img{
+    object-fit: cover;
+}

@@ -1,3 +1,15 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #ff4a11;
+  --secondary-color: #e4e8f0;
+  --tertiary-color: #9ca3af;
+  --background-color: #282828;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

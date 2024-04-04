@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header";
+import { themes } from "./database/db";
+import ColorCardsSection from "./components/ColorCardsSection/index";
+import useLocalStorageState from "use-local-storage-state";
+import AddNewTheme from "./components/AddNewTheme";
+import { v4 as uuid } from "uuid";
 
 function App() {
+  const [themesDB, setThemesDB] = useLocalStorageState("themesDB", {
+    defaultValue: themes,
+  });
+  //const isAccordionOpen = false;
+  const randomId = uuid();
+
+  function handleAddTheme(newTheme) {
+    setThemesDB([
+      {
+        id: uuid(),
+        name: newTheme.name,
+        colors: [
+          { role: "primary", value: newTheme.primaryColor, name: "default" },
+          {
+            role: "secondary",
+            value: newTheme.secondaryColor,
+            name: "default",
+          },
+          { role: "surface", value: newTheme.surfaceColor, name: "default" },
+          {
+            role: "surface-on",
+            value: newTheme.surfaceOnColor,
+            name: "default",
+          },
+        ],
+      },
+      ...themesDB,
+    ]);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <AddNewTheme onAddTheme={handleAddTheme} />
+      <ColorCardsSection themes={themesDB} />
     </div>
   );
 }
