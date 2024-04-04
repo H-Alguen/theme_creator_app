@@ -11,7 +11,7 @@ function App() {
     defaultValue: themes,
   });
   //const isAccordionOpen = false;
-  const randomId = uuid();
+  //const randomId = uuid();
 
   function handleAddTheme(newTheme) {
     setThemesDB([
@@ -37,11 +37,18 @@ function App() {
     ]);
   }
 
+  function handleDeleteItem(id) {
+    console.log(id);
+    const newThemes = themesDB.filter((themeId) => themeId.id !== id);
+    setThemesDB(newThemes);
+    console.log(newThemes);
+  }
+
   return (
     <div className="App">
       <Header />
       <AddNewTheme onAddTheme={handleAddTheme} />
-      <ColorCardsSection themes={themesDB} />
+      <ColorCardsSection themes={themesDB} onThemesDelete={handleDeleteItem} />
     </div>
   );
 }

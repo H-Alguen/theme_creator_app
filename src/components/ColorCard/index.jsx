@@ -4,7 +4,7 @@ import ArrowClosed from "../../assets/icons8-arrow-48-closed.png";
 import { useState } from "react";
 import "./ColorCard.css";
 
-function ColorCard({ id, name, colors }) {
+function ColorCard({ id, name, colors, onDelete }) {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
   function handleAccordion() {
@@ -13,35 +13,31 @@ function ColorCard({ id, name, colors }) {
 
   const colorThemesList = colors.map((color) => {
     return (
-      <>
-        <div className="card_box" key={id}>
-          <div className="card_info_desc">
-            <h3>{color.role}</h3>
-            <p>{color.value}</p>
-          </div>
-          <div
-            className="card_color_sample"
-            style={{ backgroundColor: color.value }}
-          ></div>
+      <div className="card_box" key={color.value}>
+        <div className="card_info_desc">
+          <h3>{color.role}</h3>
+          <p>{color.value}</p>
         </div>
-      </>
+        <div
+          className="card_color_sample"
+          style={{ backgroundColor: color.value }}
+        ></div>
+      </div>
     );
   });
 
-  const colorThemePreview = colors.map((color, index) => {
+  const colorThemePreview = colors.map((color) => {
     return (
-      <>
-        <div
-          key={id}
-          className="card_color_sample preview_color_box"
-          style={{ backgroundColor: color.value }}
-        ></div>
-      </>
+      <div
+        key={color.value}
+        className="card_color_sample preview_color_box"
+        style={{ backgroundColor: color.value }}
+      ></div>
     );
   });
 
   return (
-    <section className="color_card" key={id}>
+    <section className="color_card">
       <div className="card_header">
         <h2>{name}</h2>
         <button className="button_Accordion" onClick={handleAccordion}>
@@ -54,11 +50,14 @@ function ColorCard({ id, name, colors }) {
       </div>
 
       {isAccordionOpen ? (
-        colorThemesList
+        <>
+          {colorThemesList}
+          <button className="delete_button" onClick={() => onDelete(id)}>
+            Delete
+          </button>
+        </>
       ) : (
-        <div key={id} className="card_box_accordion">
-          {colorThemePreview}
-        </div>
+        <div className="card_box_accordion">{colorThemePreview}</div>
       )}
     </section>
   );
