@@ -1,15 +1,15 @@
 import "./ColorPreviewPage.css";
 
-function ColorPreviewPage({ onTry, colors }) {
-  const primaryColor = colors[0];
-  const secondaryColor = colors[1];
-  const surfaceColor = colors[2];
-  const surfaceOnColor = colors[3];
+function ColorPreviewPage({ onTry, colors, closePage }) {
+  const primaryColor = colors.primaryColor;
+  const secondaryColor = colors.secondaryColor;
+  const surfaceColor = colors.surfaceColor;
+  const surfaceOnColor = colors.surfaceOnColor;
 
-  console.log(colors);
+  console.log("PreviewPage:", colors.primaryColor);
   return (
     <div>
-      <button className="close_button" onClick={onTry}>
+      <button className="close_button" onClick={closePage}>
         close
       </button>
       <h1 style={{ color: primaryColor }}>Preview Theme</h1>

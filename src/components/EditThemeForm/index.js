@@ -49,6 +49,13 @@ function EditThemeForm({ onEdit, id, name, colors }) {
               onChange={(e) => setPrimaryColor(e.target.value)}
               defaultValue={primaryColor}
             />
+            <input
+              name="primaryColor"
+              type="text"
+              placeholder={primaryColor}
+              onChange={(e) => setPrimaryColor(e.target.value)}
+              value={primaryColor}
+            />
           </div>
         </div>
         <div className="color_box_edit">
@@ -66,6 +73,13 @@ function EditThemeForm({ onEdit, id, name, colors }) {
               placeholder="#fffff"
               onChange={(e) => setSecondaryColor(e.target.value)}
               defaultValue={secondaryColor}
+            />
+            <input
+              name="secondaryColor"
+              type="text"
+              placeholder={secondaryColor}
+              onChange={(e) => setSecondaryColor(e.target.value)}
+              value={secondaryColor}
             />
           </div>
         </div>
@@ -85,6 +99,13 @@ function EditThemeForm({ onEdit, id, name, colors }) {
               onChange={(e) => setSurfaceColor(e.target.value)}
               defaultValue={surfaceColor}
             />
+            <input
+              name="surfaceColor"
+              type="text"
+              placeholder={surfaceColor}
+              onChange={(e) => setSurfaceColor(e.target.value)}
+              value={surfaceColor}
+            />
           </div>
         </div>
         <div className="color_box_edit">
@@ -102,6 +123,13 @@ function EditThemeForm({ onEdit, id, name, colors }) {
               placeholder="#fffff"
               onChange={(e) => setSurfaceOnColor(e.target.value)}
               defaultValue={surfaceOnColor}
+            />
+            <input
+              name="surfaceOnColor"
+              type="text"
+              placeholder={surfaceOnColor}
+              onChange={(e) => setSurfaceOnColor(e.target.value)}
+              value={surfaceOnColor}
             />
           </div>
         </div>

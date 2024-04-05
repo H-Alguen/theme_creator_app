@@ -94,19 +94,19 @@ function App() {
   }
 
   function handleTryMode(theme) {
-    console.log("Start:", theme);
-
     if (theme !== undefined) {
-      console.log("Schleife");
-      console.log(theme[0].value);
-      setColorsForTryMode(() => ({
+      setColorsForTryMode({
         primaryColor: theme[0].value,
         secondaryColor: theme[1].value,
         surfaceColor: theme[2].value,
         surfaceOnColor: theme[3].value,
-      }));
+      });
     }
-    console.log("Colors to Try:", colorsForTryMode);
+
+    setIsTryMode(!isTryMode);
+  }
+
+  function closePreviewPage() {
     setIsTryMode(!isTryMode);
   }
 
@@ -115,7 +115,11 @@ function App() {
       <Header />
       <main>
         {isTryMode ? (
-          <ColorPreviewPage colors={colorsForTryMode} onTry={handleTryMode} />
+          <ColorPreviewPage
+            colors={colorsForTryMode}
+            onTry={handleTryMode}
+            closePage={closePreviewPage}
+          />
         ) : (
           <>
             <AddNewTheme onAddTheme={handleAddTheme} />
