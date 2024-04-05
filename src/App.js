@@ -76,6 +76,7 @@ function App() {
         if (theme.id === editTheme.id) {
           return {
             ...theme,
+            id: editTheme.id,
             name: editTheme.name,
             colors: [
               {
