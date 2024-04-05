@@ -5,13 +5,22 @@ import ColorCardsSection from "./components/ColorCardsSection/index";
 import useLocalStorageState from "use-local-storage-state";
 import AddNewTheme from "./components/AddNewTheme";
 import { v4 as uuid } from "uuid";
+import { useState } from "react";
+import ColorPreviewPage from "./components/ColorPreviewPage";
 
 function App() {
   const [themesDB, setThemesDB] = useLocalStorageState("themesDB", {
     defaultValue: themes,
   });
-  //const isAccordionOpen = false;
-  //const randomId = uuid();
+
+  const [isTryMode, setIsTryMode] = useState(false);
+
+  const [colorsForTryMode, setColorsForTryMode] = useState({
+    primaryColor: "#57886C",
+    secondaryColor: "#F8C7CC",
+    surfaceColor: "#FDEDEE",
+    surfaceOnColor: "#0E0F19",
+  });
 
   function handleAddTheme(newTheme) {
     setThemesDB([
@@ -37,30 +46,6 @@ function App() {
     ]);
   }
 
-  // function handleUpdateTheme(editTheme) {
-  //   setThemesDB([
-  //     {
-  //       id: editTheme.id,
-  //       name: editTheme.name,
-  //       colors: [
-  //         { role: "primary", value: editTheme.primaryColor, name: "default" },
-  //         {
-  //           role: "secondary",
-  //           value: editTheme.secondaryColor,
-  //           name: "default",
-  //         },
-  //         { role: "surface", value: editTheme.surfaceColor, name: "default" },
-  //         {
-  //           role: "surface-on",
-  //           value: editTheme.surfaceOnColor,
-  //           name: "default",
-  //         },
-  //       ],
-  //     },
-  //     ...themesDB,
-  //   ]);
-  // }
-
   function handleDeleteItem(id) {
     console.log(id);
     const newThemes = themesDB.filter((themeId) => themeId.id !== id);
@@ -69,7 +54,7 @@ function App() {
   }
 
   function handleEditItem(editTheme) {
-    console.log("handleEditItem", editTheme);
+    console.log("handleEditItem", editTheme.id);
 
     setThemesDB(
       themesDB.map((theme) => {
@@ -106,55 +91,43 @@ function App() {
         }
       })
     );
-    // const editThemeById = themesDB.filter(
-    //   (themeId) => themeId.id === editTheme.id
-    // );
+  }
 
-    // if (editThemeById === editTheme.id) {
-    //   setThemesDB([
-    //     {
-    //       id: editTheme.id,
-    //       name: editTheme.name,
-    // colors: [
-    //   {
-    //     role: "primary",
-    //     value: editTheme.primaryColor,
-    //     name: "default",
-    //   },
-    //   {
-    //     role: "secondary",
-    //     value: editTheme.secondaryColor,
-    //     name: "default",
-    //   },
-    //   {
-    //     role: "surface",
-    //     value: editTheme.surfaceColor,
-    //     name: "default",
-    //   },
-    //   {
-    //     role: "surface-on",
-    //     value: editTheme.surfaceOnColor,
-    //     name: "default",
-    //   },
-    // ],
-    //     },
-    //     ...themesDB,
-    //   ]);
-    // } else {
-    //   return <p>no id found</p>;
-    // }
+  function handleTryMode(theme) {
+    console.log("Start:", theme);
+
+    if (theme !== undefined) {
+      console.log("Schleife");
+      console.log(theme[0].value);
+      setColorsForTryMode(() => ({
+        primaryColor: theme[0].value,
+        secondaryColor: theme[1].value,
+        surfaceColor: theme[2].value,
+        surfaceOnColor: theme[3].value,
+      }));
+    }
+    console.log("Colors to Try:", colorsForTryMode);
+    setIsTryMode(!isTryMode);
   }
 
   return (
     <div className="App">
       <Header />
       <main>
-        <AddNewTheme onAddTheme={handleAddTheme} />
-        <ColorCardsSection
-          themes={themesDB}
-          onThemesDelete={handleDeleteItem}
-          onThemeEdit={handleEditItem}
-        />
+        {isTryMode ? (
+          <ColorPreviewPage colors={colorsForTryMode} onTry={handleTryMode} />
+        ) : (
+          <>
+            <AddNewTheme onAddTheme={handleAddTheme} />
+            <ColorCardsSection
+              themes={themesDB}
+              onThemesDelete={handleDeleteItem}
+              onThemeEdit={handleEditItem}
+              onTryMode={handleTryMode}
+              isTryMode={isTryMode}
+            />
+          </>
+        )}
       </main>
     </div>
   );

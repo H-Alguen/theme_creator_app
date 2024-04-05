@@ -6,7 +6,8 @@ import "./ColorCard.css";
 import ColorName from "../ColorName";
 import EditThemeForm from "../EditThemeForm";
 
-function ColorCard({ id, name, colors, onDelete, onEdit }) {
+
+function ColorCard({ id, name, colors, onDelete, onEdit, onTryMode }) {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
 
@@ -18,10 +19,9 @@ function ColorCard({ id, name, colors, onDelete, onEdit }) {
     setIsEditMode(!isEditMode);
   }
 
-  function handleEditSave() {
+  function handleEditClose() {
     setIsEditMode(!isEditMode);
   }
-
   const colorThemesList = colors.map((color) => {
     return (
       <div className="card_box" key={color.value}>
@@ -76,11 +76,14 @@ function ColorCard({ id, name, colors, onDelete, onEdit }) {
             colorThemesList
           )}
           {isEditMode ? (
-            <button className="save_button" onClick={handleEditSave}>
+            <button className="save_button" onClick={handleEditClose}>
               Close
             </button>
           ) : (
             <div className="color_botton_wrapper">
+              <button className="try_button" onClick={() => onTryMode(colors)}>
+                Try
+              </button>
               <button className="edit_button" onClick={handleEditMode}>
                 Edit
               </button>

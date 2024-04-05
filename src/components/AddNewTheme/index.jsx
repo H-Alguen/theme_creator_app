@@ -47,6 +47,13 @@ function AddNewTheme({ onAddTheme }) {
               onChange={(e) => setPrimaryColor(e.target.value)}
               defaultValue="#ffffff"
             />
+            <input
+              name="primaryColor"
+              type="text"
+              placeholder={primaryColor}
+              onChange={(e) => setPrimaryColor(e.target.value)}
+              value={primaryColor}
+            />
           </div>
         </div>
         <div className="color_box">
@@ -64,6 +71,13 @@ function AddNewTheme({ onAddTheme }) {
               placeholder="#fffff"
               onChange={(e) => setSecondaryColor(e.target.value)}
               defaultValue="#444474"
+            />
+            <input
+              name="secondaryColor"
+              type="text"
+              placeholder={secondaryColor}
+              onChange={(e) => setSecondaryColor(e.target.value)}
+              value={secondaryColor}
             />
           </div>
         </div>
@@ -83,6 +97,13 @@ function AddNewTheme({ onAddTheme }) {
               onChange={(e) => setSurfaceColor(e.target.value)}
               defaultValue="#cc7a7a"
             />
+            <input
+              name="surfaceColor"
+              type="text"
+              placeholder={surfaceColor}
+              onChange={(e) => setSurfaceColor(e.target.value)}
+              value={surfaceColor}
+            />
           </div>
         </div>
         <div className="color_box">
@@ -100,6 +121,13 @@ function AddNewTheme({ onAddTheme }) {
               placeholder="#fffff"
               onChange={(e) => setSurfaceOnColor(e.target.value)}
               defaultValue="#4f99c6"
+            />
+            <input
+              name="surfaceOnColor"
+              type="text"
+              placeholder={surfaceOnColor}
+              onChange={(e) => setSurfaceOnColor(e.target.value)}
+              value={surfaceOnColor}
             />
           </div>
         </div>
