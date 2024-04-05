@@ -3,12 +3,23 @@ import ArrowClosed from "../../assets/icons8-arrow-48-closed.png";
 
 import { useState } from "react";
 import "./ColorCard.css";
+import ColorName from "../ColorName";
+import EditThemeForm from "../EditThemeForm";
 
-function ColorCard({ id, name, colors, onDelete }) {
+function ColorCard({ id, name, colors, onDelete, onEdit }) {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   function handleAccordion() {
     setIsAccordionOpen(!isAccordionOpen);
+  }
+
+  function handleEditMode() {
+    setIsEditMode(!isEditMode);
+  }
+
+  function handleEditSave() {
+    setIsEditMode(!isEditMode);
   }
 
   const colorThemesList = colors.map((color) => {
@@ -16,7 +27,10 @@ function ColorCard({ id, name, colors, onDelete }) {
       <div className="card_box" key={color.value}>
         <div className="card_info_desc">
           <h3>{color.role}</h3>
-          <p>{color.value}</p>
+          <span>
+            <ColorName key={color.value} color={color} />
+            <p>{color.value}</p>
+          </span>
         </div>
         <div
           className="card_color_sample"
@@ -51,10 +65,30 @@ function ColorCard({ id, name, colors, onDelete }) {
 
       {isAccordionOpen ? (
         <>
-          {colorThemesList}
-          <button className="delete_button" onClick={() => onDelete(id)}>
-            Delete
-          </button>
+          {isEditMode ? (
+            <EditThemeForm
+              onEdit={onEdit}
+              id={id}
+              name={name}
+              colors={colors}
+            />
+          ) : (
+            colorThemesList
+          )}
+          {isEditMode ? (
+            <button className="save_button" onClick={handleEditSave}>
+              Close
+            </button>
+          ) : (
+            <div className="color_botton_wrapper">
+              <button className="edit_button" onClick={handleEditMode}>
+                Edit
+              </button>
+              <button className="delete_button" onClick={() => onDelete(id)}>
+                Delete
+              </button>
+            </div>
+          )}
         </>
       ) : (
         <div className="card_box_accordion">{colorThemePreview}</div>

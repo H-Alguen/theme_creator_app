@@ -14,7 +14,7 @@ padding: 1rem;;
     color:#404040;
 }
 
-.add_color_box{
+.add_color_box_edit{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -32,9 +32,9 @@ padding: 1rem;;
     font-size: 1rem;
 }
 
-.color_box{
-    width: 175px;
-    height: 175px;
+.color_box_edit{
+    width: 125px;
+    height: 150px;
     background-color: rgb(80, 63, 204);
     border-radius: 12px;
     display: flex;
@@ -44,7 +44,7 @@ padding: 1rem;;
     border: none;
 }
 
-.color_box input{
+.color_box_edit input{
     border: none;
     background-color: #ededed;
     padding: 5px;

@@ -37,6 +37,30 @@ function App() {
     ]);
   }
 
+  // function handleUpdateTheme(editTheme) {
+  //   setThemesDB([
+  //     {
+  //       id: editTheme.id,
+  //       name: editTheme.name,
+  //       colors: [
+  //         { role: "primary", value: editTheme.primaryColor, name: "default" },
+  //         {
+  //           role: "secondary",
+  //           value: editTheme.secondaryColor,
+  //           name: "default",
+  //         },
+  //         { role: "surface", value: editTheme.surfaceColor, name: "default" },
+  //         {
+  //           role: "surface-on",
+  //           value: editTheme.surfaceOnColor,
+  //           name: "default",
+  //         },
+  //       ],
+  //     },
+  //     ...themesDB,
+  //   ]);
+  // }
+
   function handleDeleteItem(id) {
     console.log(id);
     const newThemes = themesDB.filter((themeId) => themeId.id !== id);
@@ -44,11 +68,93 @@ function App() {
     console.log(newThemes);
   }
 
+  function handleEditItem(editTheme) {
+    console.log("handleEditItem", editTheme);
+
+    setThemesDB(
+      themesDB.map((theme) => {
+        if (theme.id === editTheme.id) {
+          return {
+            ...theme,
+            name: editTheme.name,
+            colors: [
+              {
+                role: "primary",
+                value: editTheme.primaryColor,
+                name: "default",
+              },
+              {
+                role: "secondary",
+                value: editTheme.secondaryColor,
+                name: "default",
+              },
+              {
+                role: "surface",
+                value: editTheme.surfaceColor,
+                name: "default",
+              },
+              {
+                role: "surface-on",
+                value: editTheme.surfaceOnColor,
+                name: "default",
+              },
+            ],
+          };
+        } else {
+          return theme;
+        }
+      })
+    );
+    // const editThemeById = themesDB.filter(
+    //   (themeId) => themeId.id === editTheme.id
+    // );
+
+    // if (editThemeById === editTheme.id) {
+    //   setThemesDB([
+    //     {
+    //       id: editTheme.id,
+    //       name: editTheme.name,
+    // colors: [
+    //   {
+    //     role: "primary",
+    //     value: editTheme.primaryColor,
+    //     name: "default",
+    //   },
+    //   {
+    //     role: "secondary",
+    //     value: editTheme.secondaryColor,
+    //     name: "default",
+    //   },
+    //   {
+    //     role: "surface",
+    //     value: editTheme.surfaceColor,
+    //     name: "default",
+    //   },
+    //   {
+    //     role: "surface-on",
+    //     value: editTheme.surfaceOnColor,
+    //     name: "default",
+    //   },
+    // ],
+    //     },
+    //     ...themesDB,
+    //   ]);
+    // } else {
+    //   return <p>no id found</p>;
+    // }
+  }
+
   return (
     <div className="App">
       <Header />
-      <AddNewTheme onAddTheme={handleAddTheme} />
-      <ColorCardsSection themes={themesDB} onThemesDelete={handleDeleteItem} />
+      <main>
+        <AddNewTheme onAddTheme={handleAddTheme} />
+        <ColorCardsSection
+          themes={themesDB}
+          onThemesDelete={handleDeleteItem}
+          onThemeEdit={handleEditItem}
+        />
+      </main>
     </div>
   );
 }

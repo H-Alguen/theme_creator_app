@@ -1,7 +1,7 @@
 import "./ColorCardsSection.css";
 import ColorCard from "../ColorCard";
 
-function ColorCardsSection({ themes, onThemesDelete }) {
+function ColorCardsSection({ themes, onThemesDelete, onThemeEdit }) {
   return (
     <main className="main_section">
       {themes.map((theme) => {
@@ -12,6 +12,7 @@ function ColorCardsSection({ themes, onThemesDelete }) {
             name={theme.name}
             colors={theme.colors}
             onDelete={onThemesDelete}
+            onEdit={onThemeEdit}
           />
         );
       })}

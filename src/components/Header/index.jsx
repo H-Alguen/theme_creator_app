@@ -7,7 +7,7 @@ function Header() {
       <h1 className="app_title">
         <span>
           Theme <br></br>
-        </span>{" "}
+        </span>
         <span>Creator</span>
       </h1>
     </header>
