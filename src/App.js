@@ -117,7 +117,6 @@ function App() {
         {isTryMode ? (
           <ColorPreviewPage
             colors={colorsForTryMode}
-            onTry={handleTryMode}
             closePage={closePreviewPage}
           />
         ) : (

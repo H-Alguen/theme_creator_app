@@ -1,6 +1,6 @@
 import "./ColorPreviewPage.css";
 
-function ColorPreviewPage({ onTry, colors, closePage }) {
+function ColorPreviewPage({ colors, closePage }) {
   const primaryColor = colors.primaryColor;
   const secondaryColor = colors.secondaryColor;
   const surfaceColor = colors.surfaceColor;
